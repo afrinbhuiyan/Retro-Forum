@@ -6,17 +6,80 @@
     <title>Retro-Forum</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- custom css -->
+     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header>
-        
+    <header class="mt-10 mx-32">
+        <div class="navbar bg-base-100">
+            <div class="navbar-start">
+              <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h8m-8 6h16" />
+                  </svg>
+                </div>
+                <ul
+                  tabindex="0"
+                  class="menu  dropdown-content gap-3 rounded-box z-[1] mt-3 w-32 bg-slate-100 p-2 shadow">
+                  <button id="btn1" class="btn btn-circle btn-outline">
+                    <img class="relative" src="images/Frame (3).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 mb-28 rounded-sm invisible">Home</p>
+                  </button>
+                  <button id="btn1" class="btn btn-circle btn-outline">
+                    <img class="relative" src="images/Frame (2).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 px-3 mb-28 rounded-sm invisible">Edit</p>
+                  </button>
+                  <button id="btn1" class="btn btn-circle btn-outline">
+                    <img class="relative" src="images/Frame (4).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 px-3 mb-28 rounded-sm invisible">Add</p>
+                  </button>
+                  <button id="btn1" class="btn btn-circle btn-outline">
+                    <img class="relative" src="images/Frame (1).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 px-3 mb-28 rounded-sm invisible">Tool</p>
+                  </button>
+                </ul>
+              </div>
+            <a class=" text-4xl poppins-extrabold">ReTro</a>
+            </div>
+            <div class="navbar-end hidden lg:flex">
+              <ul class="menu menu-horizontal px-1 gap-5">
+                <button id="btn1" class="btn btn-circle">
+                    <img class="relative" src="images/Frame (3).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 mb-28 rounded-sm invisible">Home</p>
+                  </button>
+                  <button id="btn1" class="btn btn-circle ">
+                    <img class="relative" src="images/Frame (2).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 px-3 mb-28 rounded-sm invisible">Edit</p>
+                  </button>
+                <button id="btn1" class="btn btn-circle ">
+                    <img class="relative" src="images/Frame (4).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 px-3 mb-28 rounded-sm invisible">Add</p>
+                  </button>
+                <button id="btn1" class="btn btn-circle">
+                    <img class="relative" src="images/Frame (1).svg" alt="">
+                    <p class="tooltipe absolute bg-[#12132D] text-white text-xs p-2 px-3 mb-28 rounded-sm invisible">Tool</p>
+                  </button>
+              </ul>
+            </div>
+            <div class="navber-end ml-20 lg:ml-5 ">
+              <a class="btn bg-[#797DFC] text-white px-10 rounded-3xl">Button</a>
+            </div>
+          </div>
     </header>
     <main>
-       
+
     </main>
     <footer>
-
     </footer>
     <script src="js/script.js"></script>
     <script src="tailwind_config.js"></script>
