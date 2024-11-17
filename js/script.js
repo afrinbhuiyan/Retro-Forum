@@ -1,9 +1,11 @@
-const loadCard = async (searchText =2) => {
+const loadCard = async (searchText) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`)
-    const data = await res.json()
-    const cards = data.posts
-    // console.log(cards)
-    displayCard(cards);
+    const data = await res.json();
+    console.log(data)
+    // const cards = data.posts;
+    const allCards = data.posts; // Assign the array of posts to allCards
+    // console.log(searchText)
+    displayCard(allCards);
 };
 const displayCard = (cards) => {
     // console.log(cards)
@@ -17,7 +19,7 @@ const displayCard = (cards) => {
         // 3 - set inner HTML
         discussCard.innerHTML = `
         <div class="flex gap-2 lg:gap-8">
-        <div class="avatar online w-10 lg:w-16 h-10 lg:h-16">
+        <div id="active" class="avatar online w-10 lg:w-16 h-10 lg:h-16">
         <div class="w-10 lg:w-16 h-10 lg:h-16 rounded">
             <img src="${card.image}" />
             </div>
@@ -36,22 +38,35 @@ const displayCard = (cards) => {
                 <li class="flex text-xl gap-4"><img src="images/Group 18.svg" alt="">${card.posted_time}</li>
             </ul>
             <div>
-                <button onclick="addEventListener()" id="button-click"><img src="images/Vector (1).png" alt=""></button>
+                <button onclick="addEventListener()" class="button-click"><img src="images/Vector (1).png" alt=""></button>
             </div>
          </div>
             </div>
         `;
+
         cardContainer.appendChild(discussCard);
-        let score = 0;
-        const buttonClick = document.getElementById("button-click")
-        const scoreDisplay = document.getElementById("score")
-        buttonClick.addEventListener('click', function(cards){
-        score++;
-        scoreDisplay.innerText = score;
-        console.log(cards)
-        })
         
+        let score = 0;
+        const scoreDisplay = document.getElementById("score")
+        const buttonClick = document.querySelectorAll(".button-click");
+        buttonClick.forEach((btn) => {
+            btn.addEventListener('click', function(){
+                score++
+                scoreDisplay.innerText = score;
+            })
+        });
+
+
+        const act = discussCard.querySelector("#active");
+        if (card.isActive === false) {
+            act.classList.remove('online');
+            act.classList.add("offline");
+        } else {
+            act.classList.add('online');
+        }
+
     });
+
     toggoleLoadingSpinner(false);
 }
 
@@ -78,7 +93,7 @@ const toggoleLoadingSpinner = (isLoding) =>{
     }
 }
 
-loadCard();
+
 
 
 const latestPost = async () => {
@@ -122,3 +137,5 @@ const displayPost = (data) =>{
 }
 
 latestPost()
+
+loadCard("");
