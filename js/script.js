@@ -38,24 +38,32 @@ const displayCard = (cards) => {
                 <li class="flex text-xl gap-4"><img src="images/Group 18.svg" alt="">${card.posted_time}</li>
             </ul>
             <div>
-                <button onclick="addEventListener()" class="button-click"><img src="images/Vector (1).png" alt=""></button>
+                <button onclick="displayTitle(card)" class="button-click"><img src="images/Vector (1).png" alt=""></button>
             </div>
          </div>
             </div>
         `;
 
         cardContainer.appendChild(discussCard);
-        
-        let score = 0;
-        const scoreDisplay = document.getElementById("score")
+
+
         const buttonClick = document.querySelectorAll(".button-click");
-        buttonClick.forEach((btn) => {
-            btn.addEventListener('click', function(){
-                score++
-                scoreDisplay.innerText = score;
-            })
+        buttonClick.forEach((btn, index) => {
+            btn.addEventListener('click', function () {
+                displayTitle(cards[index]); // Pass the current card to displayTitle
+            });
         });
 
+        // let score = 0;
+        // const scoreDisplay = document.getElementById("score")
+        // const buttonClick2 = document.querySelectorAll(".button-click");
+        // buttonClick.forEach((btn) => {
+        //     btn.addEventListener('click', function(){
+        //         score++
+        //         scoreDisplay.innerText = score;
+        //     })
+
+        // });
 
         const act = discussCard.querySelector("#active");
         if (card.isActive === false) {
@@ -67,14 +75,38 @@ const displayCard = (cards) => {
 
     });
 
-    toggoleLoadingSpinner(false);
+    appendLoadingSpinner(false);
+
 }
+const displayTitle = (card) => {  // Accept the card as a parameter
+    const cardContent = document.getElementById("card-content");
+    const cardTitle = document.createElement("div");  // Use document.createElement
+    cardTitle.classList = 'flex gap-8 bg-[#ffff] p-8 rounded-3xl mt-5';
+    cardTitle.innerHTML = `
+        <h1 class="text-2xl">${card.title}</h1>  <!-- Use card data -->
+        <p>${card.view_count}</p>
+    `;
+    cardContent.appendChild(cardTitle);
+};
+
+//     const displayTitle2 = () => {
+//         const cardContent = document.getElementById("card-content")
+//     const cardTitle = cardContent.createElement("div")
+//     cardTitle.classList = 'flex gap-8 bg-[#ffff] p-8 rounded-3xl mt-5';
+//     cardTitle.innerHTML = `
+//     <h1 class="text-2xl">${card.title}</h1>
+//     <p>${card.view_count}</p>
+//     `;
+//     // buttonClick(cardTitle);
+//     cardContent.appendChild(cardTitle);
+// };
+
 
 const handleSearch = () => {
     // console.log('conected handleSearch')
 
     const searchField = document.getElementById("search-field");
-    toggoleLoadingSpinner(true);
+    appendLoadingSpinner(true);
     const searchText = searchField.value;
     console.log(searchText)
     loadCard(searchText)
@@ -82,13 +114,13 @@ const handleSearch = () => {
 
 }
 
-const toggoleLoadingSpinner = (isLoding) =>{
+const appendLoadingSpinner = (isLoding) => {
     const loadingSpinner = document.getElementById("loading-spinner");
     // loadingSpinner.classList.remove('hidden')
-    if(isLoding){
+    if (isLoding) {
         loadingSpinner.classList.remove('hidden')
     }
-    else{
+    else {
         loadingSpinner.classList.add('hidden')
     }
 }
@@ -103,7 +135,7 @@ const latestPost = async () => {
     displayPost(data);
 }
 
-const displayPost = (data) =>{
+const displayPost = (data) => {
     const postContainer = document.getElementById('post-container');
     data.forEach(dt => {
         // console.log(dt)
@@ -134,8 +166,9 @@ const displayPost = (data) =>{
         `;
         postContainer.appendChild(postedCard);
     });
+
 }
 
 latestPost()
 
-loadCard("");
+loadCard(" ");
