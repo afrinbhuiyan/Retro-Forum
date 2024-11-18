@@ -9,6 +9,8 @@ const loadCard = async (searchText) => {
 };
 const displayCard = (cards) => {
     // console.log(cards)
+   
+    console.log(cards.length)
     const cardContainer = document.getElementById("card-container")
     cardContainer.textContent = '';
     cards.forEach(card => {
@@ -38,7 +40,7 @@ const displayCard = (cards) => {
                 <li class="flex text-xl gap-4"><img src="images/Group 18.svg" alt="">${card.posted_time}</li>
             </ul>
             <div>
-                <button onclick="displayTitle(card)" class="button-click"><img src="images/Vector (1).png" alt=""></button>
+                <button onclick="displayTitle()"  class="button-click"><img src="images/Vector (1).png" alt=""></button>
             </div>
          </div>
             </div>
@@ -46,24 +48,28 @@ const displayCard = (cards) => {
 
         cardContainer.appendChild(discussCard);
 
+        // const buttonClick = document.querySelectorAll(".button-click");
+        // buttonClick.forEach((btn, length) => {
+        //     btn.addEventListener('click', function () {
+        //         displayTitle(cards[length]); // Pass the current card to displayTitle
+        //     });
+        // });
+        // const cardContent = document.getElementById("card-content")
+       
+        // const scoreDisplay = document.getElementById("score")
 
+        let score = 0;
         const buttonClick = document.querySelectorAll(".button-click");
-        buttonClick.forEach((btn, index) => {
-            btn.addEventListener('click', function () {
-                displayTitle(cards[index]); // Pass the current card to displayTitle
-            });
+        buttonClick.forEach((btn) => {
+            btn.addEventListener('click', function(){
+                // score++
+                // scoreDisplay.innerText = score;
+                document.getElementById("score").innerHTML = score++;
+                displayTitle(cards[length])
+            })
+
         });
 
-        // let score = 0;
-        // const scoreDisplay = document.getElementById("score")
-        // const buttonClick2 = document.querySelectorAll(".button-click");
-        // buttonClick.forEach((btn) => {
-        //     btn.addEventListener('click', function(){
-        //         score++
-        //         scoreDisplay.innerText = score;
-        //     })
-
-        // });
 
         const act = discussCard.querySelector("#active");
         if (card.isActive === false) {
@@ -78,28 +84,16 @@ const displayCard = (cards) => {
     appendLoadingSpinner(false);
 
 }
-const displayTitle = (card) => {  // Accept the card as a parameter
+const displayTitle = (card) => {  
     const cardContent = document.getElementById("card-content");
-    const cardTitle = document.createElement("div");  // Use document.createElement
-    cardTitle.classList = 'flex gap-8 bg-[#ffff] p-8 rounded-3xl mt-5';
+    const cardTitle = document.createElement("div"); 
+    cardTitle.classList = 'flex gap-8 bg-[#ffff] shadow-xl p-8 rounded-3xl mt-5';
     cardTitle.innerHTML = `
         <h1 class="text-2xl">${card.title}</h1>  <!-- Use card data -->
-        <p>${card.view_count}</p>
+        <p class="flex text-xl gap-4"><img src="images/tabler-icon-eye.svg" alt=""> ${card.view_count}</p>
     `;
     cardContent.appendChild(cardTitle);
 };
-
-//     const displayTitle2 = () => {
-//         const cardContent = document.getElementById("card-content")
-//     const cardTitle = cardContent.createElement("div")
-//     cardTitle.classList = 'flex gap-8 bg-[#ffff] p-8 rounded-3xl mt-5';
-//     cardTitle.innerHTML = `
-//     <h1 class="text-2xl">${card.title}</h1>
-//     <p>${card.view_count}</p>
-//     `;
-//     // buttonClick(cardTitle);
-//     cardContent.appendChild(cardTitle);
-// };
 
 
 const handleSearch = () => {
